@@ -1,2 +1,2 @@
 # python-exercicios-curso
-exercicios do curso otavio miranda udemy
+exercicios curso de python do otavio miranda da udemy
