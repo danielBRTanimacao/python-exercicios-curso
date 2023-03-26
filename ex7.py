@@ -4,6 +4,8 @@ while True:
     operador = input('Digite algum operador (+-/*): ')
     num_val = None #numero valido recebe NONE
 
+    num_1f = 0 
+    num_2f = 0
     try:
         num_1f = float(num_1)   #Tenta transformar os números
         num_2f = float(num_2)   #
@@ -23,7 +25,17 @@ while True:
     if len(operador) > 1:
         print('Digite apenas um operador.')
         continue
-
+    #### Calculos ####
+    if operador == '+':
+        print(f"{num_1} + {num_2} = {num_1f+num_2f}")
+    elif operador == '*':
+        print(f"{num_1} x {num_2} = {num_1f*num_2f}")
+    elif operador == '':
+        print(f"{num_1} / {num_2} = {num_1f/num_2f}")
+    elif operador == '':
+        print(f"{num_1} - {num_2} = {num_1f-num_2f}")
+    else:
+        print("Você não deveria chegar aqui!")
     #### Final ####
 
     sair = input('Quer sair? [s]im: ').lower().startswith('s')
