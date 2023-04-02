@@ -1,37 +1,29 @@
-def titulo(msg):
-    print("-"*42)
-    print(msg.center(42))
-    print("-"*42)
+from os import system
 
-
-#programa principal
-titulo('Calculadora simples')
+print("-"*42)
+print("Jogo da palavra secreta!".center(42)) #titulo game
+print("-"*42)
+palavra = 'batata' #palavra secreta
+# palavra = str(input('digite alguma palavra para alguem adivinhar: ')) #sem try
+palavra_certa = '' #quantitade de vezes que a palavra está correta
+tentativa = 0
 while True:
-    numero1 = 0
-    numero2 = 0
-    operacoes = '/*-+'
-    while True:
-        try:
-            numero1 = float(input("Digite um número: "))
-            numero2 = float(input("Digite um segundo número: "))
-            calculo = str(input("Qual operação deseja fazer! (/*+-) "))
-            if calculo not in operacoes:
-                print("Por favor um valor valido")
-        except:
-            print("Por favor digite um valor valido!")
+    letra = str(input("\033[31mDigite uma letra \033[m: ")).lower()[0] #pega a primeira letra
+    tentativa += 1
+
+    if letra in palavra:
+        palavra_certa += letra # recebe as letras corretas
+
+    palavra_final = '' #juntando as palavras
+    for c in palavra:
+        if c in palavra_certa:
+            palavra_final += c
         else:
-            break
-    #calculo
-    if '-' in calculo:
-        print(numero1-numero2)
-    elif '/' in calculo:
-        print(numero1/numero2)
-    elif '+' in calculo:
-        print(numero1+numero2)
-    elif '*' in calculo:
-        print(numero1*numero2)
-    # Saida
-    sair = input("Deseja sair? [s]sim, 'continuar e qualquer letra': ").lower().startswith('s')
-    if sair:
-        print("Obrigado por usar o programa!")
+            palavra_final += '*'
+    
+    print('palavra formada', palavra_final) #mostra a formação da palavra
+    if palavra_final == palavra:
+        system('cls')
+        print(f"Parabens você acertou! A palavra era {palavra}")
+        print("Número de tentativas", tentativa)
         break
