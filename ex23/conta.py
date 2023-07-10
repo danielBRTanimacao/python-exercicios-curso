@@ -1,12 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Pessoa():
-    def __init__(self, nome, idade):
-        self.nome = nome
-        self.idade = idade
-
-
-class Cliente(Pessoa):
+class Banco:
     ...
 
 
@@ -25,6 +19,32 @@ class Conta(ABC):
 
     def detalhes(self, msg=''):
         print(f'O seu saldo é R${self.saldo:.2f} {msg}')
+
+
+class Pessoa(ABC):
+    def __init__(self, nome, idade):
+        self._nome = nome
+        self._idade = idade
+    
+    @property
+    def nome(self):
+        return self._nome
+
+    @nome.setter
+    def nome(self, nome):
+        self._nome = nome
+
+    @property
+    def idade(self):
+        return self._idade
+
+    @idade.setter
+    def idade(self, idade):
+        self._idade = idade
+
+
+class Cliente(Pessoa, Conta):
+    ...
 
 
 class ContaPoupanca(Conta):
@@ -60,10 +80,15 @@ class ContaCorrente(Conta):
 
 
 if __name__ == '__main__':
-    conta_poupanca1 = ContaPoupanca(123, 333)
-    conta_poupanca1.sacar(13)
-    conta_poupanca1.depositar(10)
+    # conta_poupanca1 = ContaPoupanca(123, 333)
+    # conta_poupanca1.sacar(13)
+    # conta_poupanca1.depositar(10)
+    # print('####')
+    # conta_corrente2 = ContaCorrente(123, 333, limite=100)
+    # conta_corrente2.sacar(13)
+    # conta_corrente2.sacar(89)
     print('####')
-    conta_corrente2 = ContaCorrente(123, 333, limite=100)
-    conta_corrente2.sacar(13)
-    conta_corrente2.sacar(89)
+    cliente1 = Pessoa('Bababui', 23)
+    print(cliente1.nome)
+    
+    
